@@ -11,8 +11,8 @@ app.use(expressSanitizer());
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
-// mongoose.connect("mongodb://localhost/blog_app");
-mongoose.connect("mongodb://mgautam:password@ds015574.mlab.com:15574/blog_app");
+//mongoose.connect("mongodb://localhost/blog_app");
+ mongoose.connect("mongodb://mgautam:password@ds015574.mlab.com:15574/blog_app");
 
 var blogSchema = new mongoose.Schema({
     title:String,
@@ -63,7 +63,7 @@ app.get("/blogs/:id", function(req, res){
 });
 
 app.get("/blogs/:id/edit", function(req, res){
-    req.body.blog.body = req.sanitize(req.body.blog.body);
+    // req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findById(req.params.id, function(err, foundBlog){
         if(err){
             res.redirect("/blogs");
